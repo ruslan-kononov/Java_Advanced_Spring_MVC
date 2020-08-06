@@ -13,20 +13,16 @@ public class ParticipantService{
     @Autowired
     private ParticipantRepository repository;
 
-    public void save(Participant participant) throws Exception {
+    public void save(Participant participant) {
         repository.save(participant);
     }
 
     public List<Participant> readAll(){
-        return repository.readAll();
+        return repository.findAll();
     }
 
     public Participant readById(int id){
         return repository.readById(id);
-    }
-
-    public void updateById(int id, Participant participant){
-        repository.updateById(id,participant);
     }
 
     public void deleteById(int id){

@@ -2,7 +2,6 @@ package spring.web.app01.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,27 +24,11 @@ public class FirstController {
         return "index";
     }
 
-    @GetMapping("/update")
-    public String updateParticipant(HttpServletRequest req,@RequestParam(value = "id") int id, Model model){
-        req.setAttribute("mode", "UPDATE");
-        req.setAttribute("particip",participantService.readById(id));
-        model.addAttribute("part", new Participant());
-        return "index";
-    }
-
     @GetMapping("/new")
     public String createParticipant(@ModelAttribute("part") Participant part,
                                     HttpServletRequest req){
         req.setAttribute("participants",participantService.readAll());
         req.setAttribute("mode", "CREATE");
-        return "index";
-    }
-
-    @PostMapping("/saveUpdated")
-    public String saveUpdatedParticipant(HttpServletRequest req,@ModelAttribute("part") Participant part){
-        participantService.updateById(part.getId(),part);
-        req.setAttribute("participants",participantService.readAll());
-        req.setAttribute("mode", "VIEW");
         return "index";
     }
 
@@ -63,5 +46,10 @@ public class FirstController {
         req.setAttribute("participants",participantService.readAll());
         req.setAttribute("mode", "VIEW");
         return "index";
+    }
+
+    @GetMapping("/accessDenied")
+    public String accessDeniedPage(){
+        return "accessDenied";
     }
 }

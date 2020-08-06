@@ -25,7 +25,6 @@
                     <th scope="col">Email</th>
                     <th scope="col">Level</th>
                     <th scope="col">Skill</th>
-                    <th scope="col"></th>
                     <th scope="col">${participants.size()}</th>
                 </tr>
                 </thead>
@@ -37,8 +36,6 @@
                         <td class="align-middle">${person.email}</td>
                         <td class="align-middle">${person.level}</td>
                         <td class="align-middle">${person.primarySkill}</td>
-                        <td><button type="button" class="btn btn-warning"
-                                    onclick="document.location.href='update?id=${person.id}'">Edit</button></td>
                         <td><button type="button" class="btn btn-danger"
                                     onclick="document.location.href='delete?id=${person.id}'">Delete</button></td>
                     </tr>
@@ -47,65 +44,11 @@
             </table>
         </div>
     </c:when>
-    <c:when test = "${mode=='UPDATE'}">
-        <div class="container">
-            <div style="margin: 80px 150px">
-                <form:form class="needs-validation" action="saveUpdated" method="POST" modelAttribute="part">
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label path="name">Full name</label>
-                            <form:input type="text" class="form-control"  id="participantName"
-                                   path="name" value="${particip.name}" />
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <form:label path="email">Email</form:label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@</span>
-                                </div>
-                                <form:input type="text" class="form-control" value="${particip.email}"
-                                         path="email" />
-                            </div>
-                        </div>
-                        <div class="col-md-2 mb-3" style="visibility: hidden">
-                            <form:label path="id">Id</form:label>
-                            <form:input class="form-control" value="${particip.id}"
-                                   path="id" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <form:label path="primarySkill">Skill</form:label>
-                            <form:input type="text" class="form-control"  id="skill"
-                                   value="${particip.primarySkill}" path="primarySkill" />
-                        </div>
-                        <div class="col-md-3 mb-3" path="level">
-                            <label>Level</label>
-                            <form:select class="custom-select" path="level">
-                                <form:option value="L1">L1</form:option>
-                                <form:option value="L2">L2</form:option>
-                                <form:option value="L3">L3</form:option>
-                                <form:option value="L4">L4</form:option>
-                                <form:option value="L5">L5</form:option>
-                            </form:select>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                        </div>
-                    </div>
-                    <button class="btn btn-success" type="submit">Update</button>
-                </form:form>
-            </div>
-        </div>
-    </c:when>
     <c:otherwise>
         <div class="container">
             <div style="margin: 80px 150px">
                 <form:form class="needs-validation" action="saveNew" method="POST" modelAttribute="part">
                     <div class="form-row">
-                        <div class="col-md-2 mb-3">
-                            <form:label path="id">Id</form:label>
-                            <form:input class="form-control" path="id" />
-                        </div>
                         <div class="col-md-6 mb-3">
                             <label path="name">Full name</label>
                             <form:input type="text" class="form-control"  id="participantName" path="name"  />

@@ -1,19 +1,27 @@
 package spring.web.app01.domain;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "participant")
 public class Participant {
-    private Integer id;
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column
     private String name;
+    @Column
     private String email;
+    @Column
     private Level level;
+    @Column
     private String primarySkill;
 
     public Participant() {
     }
 
-    public Participant(Integer id, String name, String email, Level level, String primarySkill) {
-        this.id = id;
+    public Participant(String name, String email, Level level, String primarySkill) {
         this.name = name;
         this.email = email;
         this.level = level;
@@ -65,7 +73,7 @@ public class Participant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Participant that = (Participant) o;
-        return Objects.equals(id, that.id) &&
+        return id == that.id &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(email, that.email) &&
                 level == that.level &&
